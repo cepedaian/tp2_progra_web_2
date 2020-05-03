@@ -43,16 +43,35 @@ function validarDni($dni){
     }
 }
 
-function validarEmail($email){   
-     $emailRegex = '/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/'; 
-     
-     if( preg_match($emailRegex,$email) ){
-         return "Email Válido";
-     }else{
-         return "Email Inválido";
-     }
+function validarEmail($email){    
 
-}
+     $regex = "/^[a-zA-Z0-9]+$/";
+
+     //parto el mail en dos substrings a partir del @.
+     $parte1 = preg_split('/@/',$email);   
+    
+     //parto la parte que sigue al @ en dos substring a partir del "."
+     $parte2 = preg_split('/[.]+/',$parte1[1]);
+
+     //convierto substring en array para medirlo
+     
+     $arrayParte1 = str_split($parte1[0]);
+     $arrayParte2 = str_split($parte2[0]);
+     $arrayParte3 = str_split($parte2[1]);
+     
+     // validaciones   
+     
+     if( (!preg_match($regex,$parte1[0])) or (sizeof($arrayParte1)<3) ) {
+        return "La parte x contiene menos de 3 caracteres o no es alfanumérica";
+     }else if ( (!preg_match($regex,$parte2[0])) or (sizeof($arrayParte2)<3) ){
+         return "La parte y contiene menos de 3 caracteres o no es alfanumérica";
+     }else if ( (!preg_match($regex,$parte2[1])) or (sizeof($arrayParte3)<3) ){
+         return "La parte z contiene menos de 3 caracteres o no es alfanumérica";
+     }else{
+         return "Email Válido";
+     } 
+
+    }
 
 function imprimirSexo($sexo){
     if($sexo == "M"){

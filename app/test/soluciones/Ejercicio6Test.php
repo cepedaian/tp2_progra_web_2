@@ -63,12 +63,21 @@ class Ejercicio6Test extends TestCase{
         $resultado = validarEmail("prueba@prueba.com");
         $this ->assertEquals("Email Válido",$resultado);
     }
-    public function test_valida_mail_incorrecto(){
+    public function test_valida_mail_parte_x_incorrecta(){
        
-        $resultado = validarEmail("pruebaprueba.com");
-        $this ->assertEquals("Email Inválido",$resultado);
-    
-        }
+        $resultado = validarEmail("pr@rts.com");
+        $this ->assertEquals("La parte x contiene menos de 3 caracteres o no es alfanumérica",$resultado);
+    }
+    public function test_valida_mail_parte_y_incorrecta(){
+       
+        $resultado = validarEmail("prs@rt.com");
+        $this ->assertEquals("La parte y contiene menos de 3 caracteres o no es alfanumérica",$resultado);
+    }
+    public function test_valida_mail_parte_z_incorrecta(){
+       
+        $resultado = validarEmail("prs@rts.11111-");
+        $this ->assertEquals("La parte z contiene menos de 3 caracteres o no es alfanumérica",$resultado);
+    }
     // -----TEST DEL SEXO------
 
     public function test_valida_sexo_masculino(){
