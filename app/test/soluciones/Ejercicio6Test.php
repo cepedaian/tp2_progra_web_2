@@ -58,8 +58,17 @@ class Ejercicio6Test extends TestCase{
     }
 
     // -----TEST DEL MAIL------
-
+    public function test_valida_mail_correcto(){
+        
+        $resultado = validarEmail("prueba@prueba.com");
+        $this ->assertEquals("Email Válido",$resultado);
+    }
+    public function test_valida_mail_incorrecto(){
+       
+        $resultado = validarEmail("pruebaprueba.com");
+        $this ->assertEquals("Email Inválido",$resultado);
     
+        }
     // -----TEST DEL SEXO------
 
     public function test_valida_sexo_masculino(){
@@ -76,7 +85,7 @@ class Ejercicio6Test extends TestCase{
         $resultado = imprimirSexo("NB");
         $this ->assertEquals("No Binarie",$resultado);
     }
-
+    
     // -----TEST DE LA FECHA DE NACIMIENTO------
 
     public function test_valida_fecha_nacimiento_correcto(){

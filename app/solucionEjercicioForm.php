@@ -44,8 +44,13 @@ function validarDni($dni){
 }
 
 function validarEmail($email){   
-
-    return "falta validar email " .$email;
+     $emailRegex = '/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/'; 
+     
+     if( preg_match($emailRegex,$email) ){
+         return "Email Válido";
+     }else{
+         return "Email Inválido";
+     }
 
 }
 
