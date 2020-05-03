@@ -44,7 +44,7 @@ function validarDni($dni){
 }
 
 function validarEmail($email){    
-
+if($email != null){
      $regex = "/^[a-zA-Z0-9]+$/";
 
      //parto el mail en dos substrings a partir del @.
@@ -70,7 +70,9 @@ function validarEmail($email){
      }else{
          return "Email Válido";
      } 
-
+    }else{
+        return "No ha ingresado Email";
+    }
     }
 
 function imprimirSexo($sexo){
@@ -98,6 +100,17 @@ function validarFechaNacimiento($fechaNac){
     }  
 }
 
+function validarDocumentacionPresentada($tipoDoc){
 
+    if($tipoDoc != true){
+        print "La documentación presentada es: ";
+        foreach($tipoDoc as $tipos){
+            print $tipos;
+        }
+    }else{
+        print "No ha ingresado documentación";
+    }
+
+}
 
 ?>
